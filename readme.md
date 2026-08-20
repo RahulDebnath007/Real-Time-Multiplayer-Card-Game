@@ -1,92 +1,127 @@
-Naruto Card Battle ⚔️
+⚔️ Naruto Card Battle
 
-A real-time multiplayer Naruto-inspired card battle game built with
+Real-time Shinobi Combat --- 1v1 multiplayer card battles powered by
+WebSockets and Redis.
+
+A Naruto-inspired real-time multiplayer card battle game built with
 React, TypeScript, Node.js, Express, WebSockets, and Redis.
 
-Features
+Players select a shinobi, enter a matchmaking queue, and battle another
+player in real time. The backend is server-authoritative, meaning
+game actions are validated and resolved on the server before the
+resulting state is synchronized with both players.
 
-Real-time 1v1 multiplayer battles
+🎮 Features
 
-WebSocket-based communication
+⚔️ Real-time 1v1 multiplayer battles
 
-Matchmaking queue
+🔌 WebSocket-based real-time communication
 
-Server-authoritative game state
+🎯 Matchmaking queue
 
-Real-time state synchronization
+🛡️ Server-authoritative game state
 
-Attack and defense card mechanics
+🔄 Real-time state synchronization
 
-HP, energy, and shield systems
+🃏 Attack and defense card mechanics
 
-Win/loss detection
+❤️ HP, energy, and shield systems
 
-Responsive desktop and mobile UI
+🏆 Win/loss detection
 
-Battle audio/music
+📱 Responsive desktop and mobile UI
 
-Production deployment with Vercel and Render
+🎵 Battle audio and music
 
-Redis-backed matchmaking/game infrastructure
+⚡ Redis-backed matchmaking and game infrastructure
 
-Tech Stack
+🚀 Production deployment with Vercel and Render
+
+🧰 Tech Stack
 
 Frontend
 
-React
+Technology      Purpose
 
-TypeScript
-
-Vite
-
-Tailwind CSS
-
-WebSocket API
+React           UI development
+TypeScript      Type-safe application code
+Vite            Frontend build tooling
+Tailwind CSS    Styling and responsive UI
+WebSocket API   Real-time server communication
 
 Backend
 
-Node.js
+Technology   Purpose
 
-TypeScript
-
-Express
-
-ws
-
-Redis
-
-UUID
+Node.js      Server runtime
+TypeScript   Type-safe backend code
+Express      HTTP server
+ws         WebSocket server
+Redis        Matchmaking/game infrastructure
+UUID         Unique player/game identifiers
 
 Deployment
 
-Frontend: Vercel
+Service                 Usage
 
-Backend: Render
+Vercel                  Frontend
+Render                  Backend
+Render Redis / Valkey   Redis infrastructure
 
-Redis/Valkey: Render
+🏗️ Architecture
 
-Architecture
+┌──────────────────────────────┐
+│      React + Vite            │
+│          Vercel              │
+└──────────────┬───────────────┘
+               │
+               │ Secure WebSocket (WSS)
+               ▼
+┌──────────────────────────────┐
+│ Node.js + Express + ws       │
+│          Render              │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│       Redis / Valkey         │
+│                              │
+│  Matchmaking + Game State    │
+└──────────────────────────────┘
 
-React + Vite (Vercel)
-        |
-        | Secure WebSocket (WSS)
-        v
-Node.js + Express + WebSocket (Render)
-        |
-        v
-Redis / Valkey
-        |
-        v
-Matchmaking + Game State
+Server-authoritative flow
 
-Project Structure
+Player Action
+     │
+     ▼
+WebSocket
+     │
+     ▼
+Backend Validation
+     │
+     ▼
+Game Logic
+     │
+     ▼
+Updated Game State
+     │
+     ├──────────────► Player 1
+     │
+     └──────────────► Player 2
+
+The client does not determine the final game result. The backend
+validates and executes actions, then broadcasts the resulting state.
+
+📁 Project Structure
 
 Real-Time-Multiplayer-Card-Game/
+│
 ├── client/
 │   ├── public/
 │   │   ├── audio/
 │   │   ├── characters/
 │   │   └── ...
+│   │
 │   ├── src/
 │   │   ├── assets/
 │   │   │   └── cards/
@@ -97,7 +132,9 @@ Real-Time-Multiplayer-Card-Game/
 │   │   ├── App.css
 │   │   ├── index.css
 │   │   └── main.tsx
+│   │
 │   └── package.json
+│
 ├── server/
 │   ├── src/
 │   │   ├── cards/
@@ -108,12 +145,14 @@ Real-Time-Multiplayer-Card-Game/
 │   │   ├── redis/
 │   │   ├── websocket/
 │   │   └── server.ts
+│   │
 │   └── package.json
+│
 ├── shared/
 ├── docker-compose.yml
 └── .gitignore
 
-How It Works
+🕹️ How It Works
 
 1. Character Selection
 
@@ -128,13 +167,17 @@ The client sends a WebSocket request:
   "characterId": "naruto"
 }
 
-The backend places the player in the matchmaking queue. When another
-player is available, a game is created.
+The backend places the player into the matchmaking queue. When another
+compatible player is available, a game is created.
 
 3. Game Creation
 
-Both players receive MATCH_FOUND and GAME_STARTED messages
-containing the game information and initial state.
+Both players receive:
+
+MATCH_FOUND
+GAME_STARTED
+
+These messages contain the game information and initial game state.
 
 4. Playing Cards
 
@@ -146,8 +189,8 @@ A card action is sent through WebSocket:
   "cardId": "rasengan"
 }
 
-The backend validates and executes the action, then sends the resulting
-game state to both players.
+The backend validates the action, executes the game logic, and produces
+the resulting state.
 
 5. State Synchronization
 
@@ -155,14 +198,17 @@ Successful actions produce:
 
 GAME_STATE_UPDATED
 
-The backend remains responsible for the authoritative game state.
+The updated state is synchronized with both players.
 
 6. Game Over
 
-When the game reaches a winning condition, both players receive a
-GAME_OVER message with the appropriate result.
+When a winning condition is reached, both players receive:
 
-WebSocket Messages
+GAME_OVER
+
+with the appropriate result.
+
+🔌 WebSocket Protocol
 
 Client → Server
 
@@ -180,9 +226,9 @@ GAME_OVER
 ACTION_ERROR
 ERROR
 
-Backend Architecture
+🧩 Backend Architecture
 
-The backend uses a modular server architecture:
+The backend follows a modular server architecture:
 
 server/src/
 ├── cards/          # Card definitions
@@ -194,10 +240,12 @@ server/src/
 ├── websocket/      # WebSocket handling
 └── server.ts       # HTTP/WebSocket server
 
-The project currently uses a modular backend, not a true microservices
-architecture.
+Architecture note: This is a modular backend, not a true
+microservices architecture. A dedicated microservices architecture
+would be a future scaling option rather than a current project
+characteristic.
 
-Local Development
+💻 Local Development
 
 Prerequisites
 
@@ -207,23 +255,23 @@ npm
 
 Redis
 
-Clone
+Clone the repository
 
 git clone https://github.com/RahulDebnath007/Real-Time-Multiplayer-Card-Game.git
 cd Real-Time-Multiplayer-Card-Game
 
-Start Backend
+Start the backend
 
 cd server
 npm install
 npm run dev
 
-Local HTTP/WebSocket server:
+Local server:
 
-http://localhost:3000
-ws://localhost:3000
+HTTP:      http://localhost:3000
+WebSocket: ws://localhost:3000
 
-Start Frontend
+Start the frontend
 
 Open another terminal:
 
@@ -231,7 +279,7 @@ cd client
 npm install
 npm run dev
 
-Environment Variables
+🔐 Environment Variables
 
 Client
 
@@ -253,44 +301,39 @@ REDIS_URL=your-redis-connection-url
 
 Never commit secrets or .env files to GitHub.
 
-Deployment
+🚀 Deployment
 
-Vercel Frontend
+Frontend --- Vercel
 
-The Vercel project uses:
+Configuration:
 
-Framework: Vite
-Root Directory: client
-Build Command: npm run build
+Framework:       Vite
+Root Directory:  client
+Build Command:   npm run build
 Output Directory: dist
 
 Production environment variable:
 
 VITE_WS_URL=wss://real-time-multiplayer-card-game.onrender.com
 
-Render Backend
+Backend --- Render
 
-Root directory:
+Configuration:
 
-server
+Root Directory: server
+Build Command: npm install && npm run build
+Start Command: npm start
 
-Build command:
+The backend listens on the PORT environment variable supplied by
+Render.
 
-npm install && npm run build
+Redis / Valkey
 
-Start command:
-
-npm start
-
-The server uses the PORT environment variable supplied by Render.
-
-Redis
-
-The backend connects to the production Redis/Valkey instance through:
+The production backend connects through:
 
 REDIS_URL=...
 
-Production Verification
+✅ Production Verification
 
 The deployed application has been tested for:
 
@@ -320,12 +363,12 @@ Redis connectivity
 
 Two separate browser sessions can be used to simulate two players.
 
-Security and Future Hardening
+🔒 Security & Future Hardening
 
-The backend executes game actions server-side rather than trusting
+The backend executes game actions server-side instead of trusting
 client-calculated results.
 
-Future hardening should include:
+Planned hardening includes:
 
 Authentication
 
@@ -345,62 +388,64 @@ Persistent match history
 
 Structured logging and monitoring
 
-Future Improvements
+🔮 Future Improvements
 
-Player authentication
+👤 Player authentication
 
-Leaderboards and rankings
+🏆 Leaderboards and rankings
 
-Persistent match history
+📜 Persistent match history
 
-Automatic WebSocket reconnection
+🔄 Automatic WebSocket reconnection
 
-Stronger concurrency handling
+🔐 Stronger concurrency handling
 
-Rate limiting
+🚦 Rate limiting
 
-Player profiles
+👤 Player profiles
 
-Ranked matchmaking
+🎯 Ranked matchmaking
 
-More characters and cards
+🃏 More characters and cards
 
-Additional battle effects and animations
+✨ Additional battle effects and animations
 
-Dedicated microservices architecture if scaling requires it
+🧱 Dedicated microservices architecture if scaling requires it
 
-Project Status
+📊 Project Status
 
-Component                            Status
+Component                             Status
 
-React frontend                       ✅
-TypeScript                           ✅
-Responsive UI                        ✅
-WebSockets                           ✅
-Real-time synchronization            ✅
-Matchmaking                          ✅
-Server-authoritative game logic      ✅
-Redis                                ✅
-Multiplayer gameplay                 ✅
-Vercel deployment                    ✅
-Render deployment                    ✅
-Production Redis/Valkey              ✅
-Microservices architecture           ❌
-Authentication                       🚧
-Advanced race-condition protection   🚧
+React frontend                          ✅
+TypeScript                              ✅
+Responsive UI                           ✅
+WebSockets                              ✅
+Real-time synchronization               ✅
+Matchmaking                             ✅
+Server-authoritative game logic         ✅
+Redis                                   ✅
+Multiplayer gameplay                    ✅
+Vercel deployment                       ✅
+Render deployment                       ✅
+Production Redis/Valkey                 ✅
+Microservices architecture              ❌
+Authentication                          🚧
+Advanced race-condition protection      🚧
 
-Author
+👨‍💻 Author
 
 Rahul Debnath
 
 Full Stack Developer
 
-GitHub: https://github.com/RahulDebnath007
+GitHub:
+https://github.com/RahulDebnath007
 
-License
+📜 License & Disclaimer
 
-This project is intended as a portfolio/educational project.
+This project is intended for portfolio and educational purposes.
 
 Naruto and its characters are trademarks of their respective rights
-holders. This is a fan-made software project and is not affiliated with
-or endorsed by the Naruto franchise or its rights holders.
+holders. This is a fan-made software project and is not affiliated
+with, sponsored by, or endorsed by the Naruto franchise or its rights
+holders.
