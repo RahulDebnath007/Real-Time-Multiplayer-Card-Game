@@ -7,6 +7,21 @@ import {
 } from "./services/websocket";
 
 import type { GameState } from "./types/game";
+import rasenganImage from "./assets/cards/rasengan.jpg";
+import shadowCloneImage from "./assets/cards/shadow-clone.jpg";
+import substitutionImage from "./assets/cards/substitution.jpg";
+import chidoriImage from "./assets/cards/chidori.jpg";
+import chidoriLightningImage from "./assets/cards/chidori-lightning.jpg";
+import fireballImage from "./assets/cards/fireball.jpg";
+import kamuiImage from "./assets/cards/kamui.jpg";
+import genjutsuImage from "./assets/cards/genjutsu.jpg";
+import infiniteTsukuyomiImage from "./assets/cards/infinite-tsukuyomi.jpg";
+import leafHurricaneImage from "./assets/cards/leaf-hurricane.jpg";
+import perfectSusanooImage from "./assets/cards/perfect-susanoo.jpg";
+import sandCoffinImage from "./assets/cards/sand-coffin.jpg";
+import sandStormImage from "./assets/cards/sand-storm.jpg";
+import susanooImage from "./assets/cards/susanoo.jpg";
+import eightGatesImage from "./assets/cards/eight-gates-of-death.jpg";
 
 type CharacterId =
   | "naruto"
@@ -96,29 +111,26 @@ const CHARACTER_IMAGES: Record<CharacterId, string> = {
 };
 
 const CARD_IMAGES: Record<string, string> = {
-  rasengan: "/src/assets/cards/rasengan.jpg",
-  shadow_clone: "/src/assets/cards/shadow-clone.jpg",
-  substitution: "/src/assets/cards/substitution.jpg",
+  rasengan: rasenganImage,
+  shadow_clone: shadowCloneImage,
+  substitution: substitutionImage,
 
-  chidori: "/src/assets/cards/chidori.jpg",
-  chidori_lightning: "/src/assets/cards/chidori-lightning.jpg",
-  fireball: "/src/assets/cards/fireball.jpg",
+  chidori: chidoriImage,
+  chidori_lightning: chidoriLightningImage,
+  fireball: fireballImage,
 
-  kamui: "/src/assets/cards/kamui.jpg",
+  kamui: kamuiImage,
+  genjutsu: genjutsuImage,
 
-  genjutsu: "/src/assets/cards/genjutsu.jpg",
-  susanoo: "/src/assets/cards/susanoo.jpg",
+  infinite_tsukuyomi: infiniteTsukuyomiImage,
+  leaf_hurricane: leafHurricaneImage,
+  perfect_susanoo: perfectSusanooImage,
 
-  sand_storm: "/src/assets/cards/sand-storm.jpg",
-  sand_coffin: "/src/assets/cards/sand-coffin.jpg",
+  sand_coffin: sandCoffinImage,
+  sand_storm: sandStormImage,
 
-  infinite_tsukuyomi: "/src/assets/cards/infinite-tsukuyomi.jpg",
-
-  perfect_susanoo: "/src/assets/cards/perfect-susanoo.jpg",
-
-  leaf_hurricane: "/src/assets/cards/leaf-hurricane.jpg",
-
-  eight_gates_of_death: "/src/assets/cards/eight-gates-of-death.jpg",
+  susanoo: susanooImage,
+  eight_gates_of_death: eightGatesImage,
 };
 
 const CARD_INFO: Record<
