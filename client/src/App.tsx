@@ -1007,6 +1007,24 @@ function App() {
               </aside>
             </div>
           </main>
+          <footer className="mt-20 w-full px-4 pb-8 sm:px-6">
+  <div className="mb-6 h-px w-full bg-white/10" />
+
+  <div className="flex flex-col items-center gap-2 text-center">
+    <span className="text-[9px] font-bold tracking-[3px] text-orange-500 sm:text-[11px] sm:tracking-[4px]">
+      NARUTO CARD BATTLE
+    </span>
+
+    <span className="text-[10px] tracking-[0.5px] text-slate-500 sm:text-[11px] sm:tracking-[1px]">
+      © 2026 Rahul Debnath. All Rights Reserved.
+    </span>
+
+    <span className="max-w-[600px] text-[8px] leading-relaxed tracking-[0.5px] text-slate-600 sm:text-[9px] sm:tracking-[0.8px]">
+      Fan-made project • Naruto and related characters belong to their
+      respective owners.
+    </span>
+  </div>
+</footer>
         </div>
       </div>
     );
@@ -1854,24 +1872,7 @@ function App() {
         )}
       </div>
 
-<footer className="mt-20 w-full px-4 pb-8 sm:px-6">
-  <div className="mb-6 h-px w-full bg-white/10" />
 
-  <div className="flex flex-col items-center gap-2 text-center">
-    <span className="text-[9px] font-bold tracking-[3px] text-orange-500 sm:text-[11px] sm:tracking-[4px]">
-      NARUTO CARD BATTLE
-    </span>
-
-    <span className="text-[10px] tracking-[0.5px] text-slate-500 sm:text-[11px] sm:tracking-[1px]">
-      © 2026 Rahul Debnath. All Rights Reserved.
-    </span>
-
-    <span className="max-w-[600px] text-[8px] leading-relaxed tracking-[0.5px] text-slate-600 sm:text-[9px] sm:tracking-[0.8px]">
-      Fan-made project • Naruto and related characters belong to their
-      respective owners.
-    </span>
-  </div>
-</footer>
 
       <style>
         {`
