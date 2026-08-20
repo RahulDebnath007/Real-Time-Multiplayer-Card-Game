@@ -1,15 +1,10 @@
 ⚔️ Naruto Card Battle
 
-Real-time Shinobi Combat --- 1v1 multiplayer card battles powered by
-WebSockets and Redis.
+Real-time Shinobi Combat — 1v1 multiplayer card battles powered by WebSockets and Redis.
 
-A Naruto-inspired real-time multiplayer card battle game built with
-React, TypeScript, Node.js, Express, WebSockets, and Redis.
+A Naruto-inspired real-time multiplayer card battle game built with React, TypeScript, Node.js, Express, WebSockets, and Redis.
 
-Players select a shinobi, enter a matchmaking queue, and battle another
-player in real time. The backend is server-authoritative, meaning
-game actions are validated and resolved on the server before the
-resulting state is synchronized with both players.
+Players select a shinobi, enter a matchmaking queue, and battle another player in real time. The backend is server-authoritative, meaning game actions are validated and resolved on the server before the resulting state is synchronized with both players.
 
 🎮 Features
 
@@ -41,32 +36,77 @@ resulting state is synchronized with both players.
 
 Frontend
 
-Technology      Purpose
+Technology
 
-React           UI development
-TypeScript      Type-safe application code
-Vite            Frontend build tooling
-Tailwind CSS    Styling and responsive UI
-WebSocket API   Real-time server communication
+Purpose
+
+React
+
+UI development
+
+TypeScript
+
+Type-safe application code
+
+Vite
+
+Frontend build tooling
+
+Tailwind CSS
+
+Styling and responsive UI
+
+WebSocket API
+
+Real-time server communication
 
 Backend
 
-Technology   Purpose
+Technology
 
-Node.js      Server runtime
-TypeScript   Type-safe backend code
-Express      HTTP server
-ws         WebSocket server
-Redis        Matchmaking/game infrastructure
-UUID         Unique player/game identifiers
+Purpose
+
+Node.js
+
+Server runtime
+
+TypeScript
+
+Type-safe backend code
+
+Express
+
+HTTP server
+
+ws
+
+WebSocket server
+
+Redis
+
+Matchmaking and game infrastructure
+
+UUID
+
+Unique player/game identifiers
 
 Deployment
 
-Service                 Usage
+Service
 
-Vercel                  Frontend
-Render                  Backend
-Render Redis / Valkey   Redis infrastructure
+Usage
+
+Vercel
+
+Frontend
+
+Render
+
+Backend
+
+Render Redis / Valkey
+
+Redis infrastructure
 
 🏗️ Architecture
 
@@ -109,8 +149,7 @@ Updated Game State
      │
      └──────────────► Player 2
 
-The client does not determine the final game result. The backend
-validates and executes actions, then broadcasts the resulting state.
+The client does not determine the final game result. The backend validates and executes actions, then broadcasts the resulting state.
 
 📁 Project Structure
 
@@ -167,8 +206,7 @@ The client sends a WebSocket request:
   "characterId": "naruto"
 }
 
-The backend places the player into the matchmaking queue. When another
-compatible player is available, a game is created.
+The backend places the player into the matchmaking queue. When another compatible player is available, a game is created.
 
 3. Game Creation
 
@@ -189,8 +227,7 @@ A card action is sent through WebSocket:
   "cardId": "rasengan"
 }
 
-The backend validates the action, executes the game logic, and produces
-the resulting state.
+The backend validates the action, executes the game logic, and produces the resulting state.
 
 5. State Synchronization
 
@@ -240,10 +277,7 @@ server/src/
 ├── websocket/      # WebSocket handling
 └── server.ts       # HTTP/WebSocket server
 
-Architecture note: This is a modular backend, not a true
-microservices architecture. A dedicated microservices architecture
-would be a future scaling option rather than a current project
-characteristic.
+Architecture note: This is a modular backend, not a true microservices architecture. A dedicated microservices architecture would be a future scaling option rather than a current project characteristic.
 
 💻 Local Development
 
@@ -303,7 +337,7 @@ Never commit secrets or .env files to GitHub.
 
 🚀 Deployment
 
-Frontend --- Vercel
+Frontend — Vercel
 
 Configuration:
 
@@ -316,7 +350,7 @@ Production environment variable:
 
 VITE_WS_URL=wss://real-time-multiplayer-card-game.onrender.com
 
-Backend --- Render
+Backend — Render
 
 Configuration:
 
@@ -324,8 +358,7 @@ Root Directory: server
 Build Command: npm install && npm run build
 Start Command: npm start
 
-The backend listens on the PORT environment variable supplied by
-Render.
+The backend listens on the PORT environment variable supplied by Render.
 
 Redis / Valkey
 
@@ -365,8 +398,7 @@ Two separate browser sessions can be used to simulate two players.
 
 🔒 Security & Future Hardening
 
-The backend executes game actions server-side instead of trusting
-client-calculated results.
+The backend executes game actions server-side instead of trusting client-calculated results.
 
 Planned hardening includes:
 
@@ -414,23 +446,69 @@ Structured logging and monitoring
 
 📊 Project Status
 
-Component                             Status
+Component
 
-React frontend                          ✅
-TypeScript                              ✅
-Responsive UI                           ✅
-WebSockets                              ✅
-Real-time synchronization               ✅
-Matchmaking                             ✅
-Server-authoritative game logic         ✅
-Redis                                   ✅
-Multiplayer gameplay                    ✅
-Vercel deployment                       ✅
-Render deployment                       ✅
-Production Redis/Valkey                 ✅
-Microservices architecture              ❌
-Authentication                          🚧
-Advanced race-condition protection      🚧
+Status
+
+React frontend
+
+✅
+
+TypeScript
+
+✅
+
+Responsive UI
+
+✅
+
+WebSockets
+
+✅
+
+Real-time synchronization
+
+✅
+
+Matchmaking
+
+✅
+
+Server-authoritative game logic
+
+✅
+
+Redis
+
+✅
+
+Multiplayer gameplay
+
+✅
+
+Vercel deployment
+
+✅
+
+Render deployment
+
+✅
+
+Production Redis/Valkey
+
+✅
+
+Microservices architecture
+
+❌
+
+Authentication
+
+🚧
+
+Advanced race-condition protection
+
+🚧
 
 👨‍💻 Author
 
@@ -438,14 +516,10 @@ Rahul Debnath
 
 Full Stack Developer
 
-GitHub:
-https://github.com/RahulDebnath007
+GitHub: RahulDebnath007
 
 📜 License & Disclaimer
 
 This project is intended for portfolio and educational purposes.
 
-Naruto and its characters are trademarks of their respective rights
-holders. This is a fan-made software project and is not affiliated
-with, sponsored by, or endorsed by the Naruto franchise or its rights
-holders.
+Naruto and its characters are trademarks of their respective rights holders. This is a fan-made software project and is not affiliated with, sponsored by, or endorsed by the Naruto franchise or its rights holders.
